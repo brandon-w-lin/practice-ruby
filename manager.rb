@@ -40,6 +40,12 @@ class Manager < Employee
     for emp in @employees
       emp.give_annual_raise
     end
+
+    # #alternatively:
+    # @employees.each do |e|
+    #   e.give_all_raises
+    # end
+
   end
 
   def fire_all_employees
