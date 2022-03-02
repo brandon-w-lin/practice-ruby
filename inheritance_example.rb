@@ -1,7 +1,7 @@
 class Vehicle
   attr_reader :brake, :accelerate
   attr_writer :turn
-  
+
   def initialize
     @speed = 0
     @direction = 'north'
@@ -21,6 +21,12 @@ class Vehicle
 end
 
 class Car < Vehicle
+  def initialize
+    super
+    @fuel = 100
+    @make = 'Toyota'
+    @model = 'Camry'
+  end
 
   def honk_horn
     puts "Beeeeeeep!"
@@ -34,7 +40,8 @@ class Bike < Vehicle
 end
 
 bike = Bike.new()
-car = Car.new()
+car = Car.new(100,'toyota','camry')
 
 car.honk_horn
+puts car.make
 bike.ring_bell
