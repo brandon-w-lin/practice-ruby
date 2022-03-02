@@ -35,19 +35,19 @@ class Manager < Employee
     puts "Email sent!"
   end
 
-  # def give_all_raises
-  #   #loops through each employee to call give_annual_raise method)
-  #   for emp in @employees
-  #     emp.give_annual_raise
-  #   end
-  # end
+  def give_all_raises
+    #loops through each employee to call give_annual_raise method)
+    for emp in @employees
+      emp.give_annual_raise
+    end
+  end
 
-  # def fire_all_employees
-  #   #loops through each employee to change active status to false
-  #   for emp in @employees
-  #     emp.active = false
-  #   end
-  # end
+  def fire_all_employees
+    #loops through each employee to change active status to false
+    for emp in @employees
+      emp.active = false
+    end
+  end
 
 end
 
@@ -55,6 +55,10 @@ manager = Manager.new(first_name: "Saron", last_name: "Yitbarek", salary: 100000
 manager.print_info
 manager.send_report
 
-# manager.give_all_raises
-# employee1.print_info
-# employee2.print_info
+manager.give_all_raises
+employee1.print_info
+employee2.print_info
+
+manager.fire_all_employees
+puts employee1.active
+puts employee2.active
