@@ -24,10 +24,10 @@ class Inventory
   attr_reader :name, :price, :color
   attr_writer :name, :price, :color
   
-  def initialize(name,price,color)
-    @name=name
-    @price=price
-    @color=color
+  def initialize(options)
+    @name=options[:name]
+    @price=options[:price]
+    @color=options[:color]
   end
 
   def desc
@@ -35,9 +35,9 @@ class Inventory
   end
 end
 
-i1 = Inventory.new('paint',5,'red')
-i2 = Inventory.new('paint brush',10,'brown')
-i3 = Inventory.new('canvas',20,'white')
+i1 = Inventory.new(name: 'paint', price: 5, color: 'red')
+i2 = Inventory.new(name: 'paint brush', price: 10, color: 'brown')
+i3 = Inventory.new(name: 'canvas', price: 20, color: 'white')
 
 puts i1.desc
 puts i2.desc
