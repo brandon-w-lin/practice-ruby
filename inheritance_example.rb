@@ -1,4 +1,7 @@
 class Vehicle
+  attr_reader :brake, :accelerate
+  attr_writer :turn
+  
   def initialize
     @speed = 0
     @direction = 'north'
@@ -18,6 +21,7 @@ class Vehicle
 end
 
 class Car < Vehicle
+
   def honk_horn
     puts "Beeeeeeep!"
   end
