@@ -19,15 +19,24 @@
 # puts paint[:price]
 # puts canvas[:color]
 
+module Restock
+  def restock(count)
+    @count += count
+  end
+end
 
 class Inventory
-  attr_reader :name, :price, :color
-  attr_writer :name, :price, :color
+
+  attr_reader :name, :price, :color, :count
+  attr_writer :name, :price, :color, :count
   
+  include Restock 
+
   def initialize(options)
     @name=options[:name]
     @price=options[:price]
     @color=options[:color]
+    @count=options[:count]
   end
 
   def desc
@@ -35,14 +44,4 @@ class Inventory
   end
 end
 
-i1 = Inventory.new(name: 'paint', price: 5, color: 'red')
-i2 = Inventory.new(name: 'paint brush', price: 10, color: 'brown')
-i3 = Inventory.new(name: 'canvas', price: 20, color: 'white')
 
-puts i1.desc
-puts i2.desc
-puts i3.desc
-
-puts i1.price
-puts i2.name
-puts i3.color
