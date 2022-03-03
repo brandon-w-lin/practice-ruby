@@ -19,7 +19,7 @@
 # puts paint[:price]
 # puts canvas[:color]
 
-module Restock
+module Restockable
   def restock(count)
     @count += count
   end
@@ -30,7 +30,7 @@ class Inventory
   attr_reader :name, :price, :color, :count
   attr_writer :name, :price, :color, :count
   
-  include Restock 
+  include Restockable
 
   def initialize(options)
     @name=options[:name]
