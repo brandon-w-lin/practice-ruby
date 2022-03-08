@@ -24,7 +24,7 @@ class Bowl
   end
 
   def score(pins1, pins2)
-    if pins1 = 10 #strike
+    if pins1 == 10 #strike
       return 25 #whatever strike score is
     elsif pins1 + pins2 = 10 #spare
       return 15 #whatever spare is
