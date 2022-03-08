@@ -38,9 +38,9 @@ class Bowl
     # 2.times do
     roll
     @pins[i] = []
-    @pins[i][0] = @pins1
-    @pins[i][1] = @pins2
-    @scores[i] = score(@pins1, @pins2)
+    @pins[i][0] = @pins1.to_i
+    @pins[i][1] = @pins2.to_i
+    @scores[i] = score(@pins1.to_i, @pins2.to_i)
     i += 1
     @scores.each { |score| puts "scores were: #{score}" }
     # end
