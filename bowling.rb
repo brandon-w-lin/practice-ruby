@@ -9,37 +9,43 @@
 # Return the total score
 
 class Bowl
+  def initialize
+    @pins = []
+    @scores = []
+  end
 
   def roll
     puts "pins knocked down on first roll"
     @pins1 = gets.chomp
-    if not @pins = 10
+    if not @pins == 10
       puts "pins knocked down on second roll"
       @pins2 = gets.chomp
     end
   end
 
-  def score()
-    if @pins1 = 10 #strike
+  def score(pins1, pins2)
+    if pins1 = 10 #strike
       return 25 #whatever strike score is
-    elsif @pins1 + @pins2 = 10 #spare
+    elsif pins1 + pins2 = 10 #spare
       return 15 #whatever spare is
     else
-      return @pins1 + @pins2
+      return pins1 + pins2
     end
   end
 
   def play
     i = 0
     # 2.times do
-      roll
-      pins = []
-      pins[i][0] = @pins1
-      pins[i][1] = @pins2
-      scores[i] = score
-      i+=1
-      scores.each {|score| puts "scores were: #{score}"}
+    roll
+    @pins[i] = []
+    @pins[i][0] = @pins1
+    @pins[i][1] = @pins2
+    @scores[i] = score(@pins1, @pins2)
+    i += 1
+    # scores.each { |score| puts "scores were: #{score}" }
     # end
   end
-
 end
+
+game = Bowl.new
+game.play
