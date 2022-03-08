@@ -26,7 +26,7 @@ class Bowl
   def score(pins1, pins2)
     if pins1 == 10 #strike
       return 25 #whatever strike score is
-    elsif pins1 + pins2 = 10 #spare
+    elsif pins1 + pins2 == 10 #spare
       return 15 #whatever spare is
     else
       return pins1 + pins2
@@ -42,7 +42,7 @@ class Bowl
     @pins[i][1] = @pins2
     @scores[i] = score(@pins1, @pins2)
     i += 1
-    # scores.each { |score| puts "scores were: #{score}" }
+    scores.each { |score| puts "scores were: #{score}" }
     # end
   end
 end
