@@ -16,10 +16,10 @@ class Bowl
 
   def roll
     puts "pins knocked down on first roll"
-    @pins1 = gets.chomp
-    if not @pins == 10
+    @pins1 = gets.chomp.to_i
+    if not(@pins1 == 10)
       puts "pins knocked down on second roll"
-      @pins2 = gets.chomp
+      @pins2 = gets.chomp.to_i
     end
   end
 
@@ -38,9 +38,9 @@ class Bowl
     2.times do
       roll
       @pins[i] = []
-      @pins[i][0] = @pins1.to_i
-      @pins[i][1] = @pins2.to_i
-      @scores[i] = score(@pins1.to_i, @pins2.to_i)
+      @pins[i][0] = @pins1
+      @pins[i][1] = @pins2
+      @scores[i] = score(@pins1, @pins2)
       i += 1
     end
     @scores.each_with_index { |score, index| puts "score in set #{index + 1} was: #{score}" }
