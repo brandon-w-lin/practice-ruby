@@ -42,7 +42,7 @@ class Bowl
     @pins[i][1] = @pins2
     @scores[i] = score(@pins1, @pins2)
     i += 1
-    scores.each { |score| puts "scores were: #{score}" }
+    @scores.each { |score| puts "scores were: #{score}" }
     # end
   end
 end
