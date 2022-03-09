@@ -15,15 +15,15 @@ class Bowl
   end
 
   def roll
-    puts "pins knocked down on first roll"
+    puts "Frame #{@frame + 1}, roll 1:"
     @pins1 = gets.chomp.to_i
     if not(@pins1 == 10)
-      puts "pins knocked down on second roll"
+      puts "Frame #{@frame + 1}, roll 2:"
       @pins2 = gets.chomp.to_i
     end
   end
 
-  def score(pins1, pins2)
+  def conv_pins_to_score(pins1, pins2)
     if pins1 == 10 #strike
       return 25 #whatever strike score is
     elsif pins1 + pins2 == 10 #spare
@@ -33,17 +33,23 @@ class Bowl
     end
   end
 
+  def total_score(scores)
+    total = 0
+    @scores.each { |score| total += score }
+    return total
+  end
+
   def play
-    frame = 0
+    @frame = 0
     2.times do
       system("clear")
       scoreboard()
       roll
-      @pins[frame] = []
-      @pins[frame][0] = @pins1
-      @pins[frame][1] = @pins2
-      @scores[frame] = score(@pins1, @pins2)
-      frame += 1
+      @pins[@frame] = []
+      @pins[@frame][0] = @pins1
+      @pins[@frame][1] = @pins2
+      @scores[@frame] = conv_pins_to_score(@pins1, @pins2)
+      @frame += 1
     end
     system("clear")
     scoreboard()
@@ -69,6 +75,8 @@ class Bowl
     (10 - scores.length).times do
       scores_for_scoreboard << blank_score
     end
+
+    scores_for_scoreboard << " " * (12 - total_score(scores).to_s.length) + total_score(scores).to_s + " |"
 
     scores_string = ""
     scores_for_scoreboard.each do |score|
