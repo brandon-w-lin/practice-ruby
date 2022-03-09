@@ -16,10 +16,20 @@ class Bowl
 
   def roll
     puts "Frame #{@frame + 1}, roll 1:"
-    @pins1 = gets.chomp.to_i
+    while true
+      @pins1 = gets.chomp.to_i
+      if @pins1.to_i.between?(0, 10)
+        break
+      end
+    end
     if not(@pins1 == 10)
       puts "Frame #{@frame + 1}, roll 2:"
-      @pins2 = gets.chomp.to_i
+      while true
+        @pins2 = gets.chomp.to_i
+        if @pins2.to_i.between?(0, 10 - @pins1)
+          break
+        end
+      end
     end
   end
 
@@ -37,22 +47,6 @@ class Bowl
     total = 0
     @scores.each { |score| total += score }
     return total
-  end
-
-  def play
-    @frame = 0
-    2.times do
-      system("clear")
-      scoreboard()
-      roll
-      @pins[@frame] = []
-      @pins[@frame][0] = @pins1
-      @pins[@frame][1] = @pins2
-      @scores[@frame] = conv_pins_to_score(@pins1, @pins2)
-      @frame += 1
-    end
-    system("clear")
-    scoreboard()
   end
 
   def conv_scores_to_scoreboard(scores)
@@ -85,7 +79,7 @@ class Bowl
     return scores_string
   end
 
-  def scoreboard()
+  def scoreboard
     line_star = "**************************************************************************"
     line_underscore = "__________________________________________________________________________"
     header = "  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  | Total Score |"
@@ -97,6 +91,22 @@ class Bowl
     puts spacing + line_star
     puts "Player 1" + (" " * (spacing_count - "Player 1".length)) + "|" + conv_scores_to_scoreboard(@scores)
     puts spacing + line_underscore
+  end
+
+  def play
+    @frame = 0
+    2.times do
+      system("clear")
+      scoreboard()
+      roll
+      @pins[@frame] = []
+      @pins[@frame][0] = @pins1
+      @pins[@frame][1] = @pins2
+      @scores[@frame] = conv_pins_to_score(@pins1, @pins2)
+      @frame += 1
+    end
+    system("clear")
+    scoreboard()
   end
 end
 
