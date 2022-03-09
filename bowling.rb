@@ -34,16 +34,19 @@ class Bowl
   end
 
   def play
-    i = 0
+    frame = 0
     2.times do
+      system("clear")
+      scoreboard()
       roll
-      @pins[i] = []
-      @pins[i][0] = @pins1
-      @pins[i][1] = @pins2
-      @scores[i] = score(@pins1, @pins2)
-      i += 1
+      @pins[frame] = []
+      @pins[frame][0] = @pins1
+      @pins[frame][1] = @pins2
+      @scores[frame] = score(@pins1, @pins2)
+      frame += 1
     end
-    @scores.each_with_index { |score, index| puts "score in set #{index + 1} was: #{score}" }
+    system("clear")
+    scoreboard()
   end
 
   def conv_scores_to_scoreboard(scores)
@@ -84,10 +87,10 @@ class Bowl
     puts spacing + line_star
     puts spacing + header
     puts spacing + line_star
-    puts "Player 1" + (" " * (spacing_count - "Player 1".length)) + "|" + scores_for_player(player1)
+    puts "Player 1" + (" " * (spacing_count - "Player 1".length)) + "|" + conv_scores_to_scoreboard(@scores)
     puts spacing + line_underscore
   end
 end
 
 game = Bowl.new
-game.conv_scores_to_scoreboard([8, 10, 15, 25])
+game.play
